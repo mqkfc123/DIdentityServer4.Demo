@@ -10,7 +10,7 @@ namespace WebApi.Controllers
     public class ValuesController : Controller
     {
         // GET api/values
-        [HttpGet]
+        [HttpGet] 
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };

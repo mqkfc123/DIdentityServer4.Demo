@@ -18,6 +18,7 @@ namespace DIdentityServer
             // 使用内存存储，密钥，客户端和资源来配置身份服务器。
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
+                .AddTestUsers(Config.GetUsers().ToList())   //设置用户标识
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients());
 

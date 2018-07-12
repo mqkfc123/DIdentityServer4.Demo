@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Models;
+using IdentityServer4.Test;
 using System.Collections.Generic;
 
 namespace DIdentityServer
@@ -31,7 +32,8 @@ namespace DIdentityServer
                 {
                     ClientId = "client",
                     // 没有交互性用户，使用 clientid/secret 实现认证。
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    //AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     // 用于认证的密码
                     ClientSecrets =
                     {
@@ -40,6 +42,23 @@ namespace DIdentityServer
                     // 客户端有权访问的范围（Scopes）
                     AllowedScopes = { "api1" }
                 }
+            };
+        }
+
+        /// <summary>
+        /// Define which uses will use this IdentityServer
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<TestUser> GetUsers()
+        {
+            return new[]
+            {
+                new TestUser
+                {
+                    SubjectId = "10001",
+                    Username = "mqkfc123@163.com",
+                    Password = "123456"
+                } 
             };
         }
 

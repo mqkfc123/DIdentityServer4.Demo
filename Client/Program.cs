@@ -19,6 +19,7 @@ namespace Client
             //var disco = await DiscoveryClient.GetAsync("http://localhost:1597");
             //identityServer 端口地址
             var discoveryClient = new DiscoveryClient("http://didentityserver.com");
+            
             discoveryClient.Policy.RequireHttps = false;
             var disco = await discoveryClient.GetAsync();
 
@@ -30,7 +31,11 @@ namespace Client
 
             // request token
             var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "secret");
-            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
+
+            //帐号密码
+            var tokenResponse = tokenClient.RequestResourceOwnerPasswordAsync("mqkfc123@163.com", "123456").Result;
+
+            //var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
 
             if (tokenResponse.IsError)
             {
